@@ -30,12 +30,24 @@ typedef enum : NSInteger {
 @property (nonatomic) BOOL isReady;
 @property (nonatomic) APVAdView *currentPlayer;
 @property (nonatomic) APVAdConfiguration *configuration;
+@property (nonatomic, readonly) NSString *pubId;
+
+/** APVAdView settings */
+@property (nonatomic) BOOL soundButtonEnabled;
+@property (nonatomic) BOOL replayButtonEnabled;
+@property (nonatomic) BOOL completionReplayButtonEnabled;
+@property (nonatomic) BOOL closeButtonEnabled;
+@property (nonatomic) BOOL linkTextButtonEnabled;
+@property (nonatomic) BOOL clickActionDisabled;
+@property (nonatomic) BOOL equalizerHidden;
+@property (nonatomic) BOOL playbackFromBeginningOnFullscreen;
 
 - (id) initWithPubId:(NSString *) pubId withDelegate:(id<APVAdManagerDelegate>) delegate;
 - (id) initWithPubId:(NSString *) pubId withDelegate:(id<APVAdManagerDelegate>) delegate withEnv: (APVEnv) env;
 - (void) load;
-- (void) showAdForView:(UIView *)view;
-- (void) showAdForView:(UIView *)view withRect:(CGRect)rect;
+- (void) load:(NSString *)exId;
+- (UIView *) showAdForView:(UIView *)view;
+- (UIView *) showAdForView:(UIView *)view withRect:(CGRect)rect;
 - (void) removeAd;
 - (UIView *)getCurrentAdView;
 
@@ -44,6 +56,7 @@ typedef enum : NSInteger {
 - (void) didThroughSkipOffset;
 - (void) didCompletion;
 - (void) didClick;
+- (void) didTapAction;
 - (void) didClickThrough;
 - (void) didClickToFullscreen;
 - (void) didUnmute;
@@ -52,6 +65,16 @@ typedef enum : NSInteger {
 - (void) didReplay;
 - (void) didReadyToPlayAd;
 - (void) didFailedToPlayAd:(NSObject *)error;
+
+@end
+
+
+#pragma mark -
+
+@interface APVNativeAd : NSObject
+
+@property (nonatomic, copy) NSString* adTitle;
+@property (nonatomic, copy) NSString* adDescription;
 
 @end
 
@@ -64,14 +87,17 @@ typedef enum : NSInteger {
 
 @optional
 - (void) onReadyToPlayAd:(APVAdManager *)ad;
+- (void) onReadyToPlayAd:(APVAdManager *)ad forNativeAd:(APVNativeAd *)nativeAd;
 - (void) onReadyToPlayAd;
 - (void) onPlayingAd;
 - (void) onCompletionAd;
 - (void) onClickAd;
+- (void) onTapActionAd;
 - (void) onUnmuteAd;
 - (void) onMuteAd;
 - (void) onCloseAd;
 - (void) onReplayAd;
 - (void) onFailedToPlayAd:(NSObject *)error;
+- (BOOL) onRedirectToDefaultBrowser;
 
 @end
