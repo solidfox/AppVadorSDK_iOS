@@ -9,8 +9,7 @@ Pod::Spec.new do |s|
   s.homepage            = "https://github.com/appvador/AppVadorSDK_iOS"
   s.source              = { :git => "https://github.com/solidfox/AppVadorSDK_iOS.git", :tag => s.version }
   s.frameworks          = "AdSupport", "CoreTelephony", "CoreMedia", "AVFoundation", "QuartzCore", "AppVador"
-  s.source_files        = "AppVadorSDK.framework/Headers/*.h"
-  s.preserve_paths      = "AppVadorSDK.framework/*"
+  s.resources			= 'AppVadorSDK.framework/Resources/*.*'
   s.vendored_frameworks = "AppVadorSDK.framework"
   s.compiler_flags      = "-ObjC"
 end
