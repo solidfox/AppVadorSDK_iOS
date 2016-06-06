@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "AppVadorSDK_iOS"
-  s.version      = "3.06"
+  s.version      = "3.0.6"
   s.summary      = "TODO"
 
   # This description is used to generate tags and improve search results.
