@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name                = "AppVadorSDK"
   s.summary             = "AppVador ad framework"
   s.license             = { :type => 'AppVador publisher license', :text => 'Copyright 2013 AppVador Inc. All Rights Reserved.' }
-  s.version             = "3.0.7"
+  s.version             = "3.0.8"
   s.platform            = :ios
   s.author              = "AppVador"
   s.requires_arc        = true
